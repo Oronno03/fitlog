@@ -7,9 +7,8 @@ const fetchWorkouts = async (): Promise<IWorkout[]> => {
   return data;
 };
 
-const workouts = await fetchWorkouts();
-
-const Workouts = () => {
+const Workouts = async () => {
+  const workouts = await fetchWorkouts();
   return (
     <section className="bg-black pb-16" id="library">
       <div className="container mx-auto flex flex-col gap-8">
