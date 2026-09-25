@@ -9,12 +9,26 @@ const Workouts = ({ tab, sort }: { tab: string; sort: string }) => {
   return (
     <div className="flex gap-3 flex-col">
       {tab === "today"
-        ? todaysPlans.map((workout) => (
-            <Card key={workout.id} workout={workout} today={true} />
-          ))
-        : saved.map((workout) => (
-            <Card key={workout.id} workout={workout} today={false} />
-          ))}
+        ? todaysPlans
+            .sort((a, b) => {
+              console.log("SORTING");
+              if (sort === "duration") return a.duration - b.duration;
+              if (sort === "rating") return a.rating - b.rating;
+              return a.caloriesBurned - b.caloriesBurned;
+            })
+            .map((workout) => (
+              <Card key={workout.id} workout={workout} today={true} />
+            ))
+        : saved
+            .sort((a, b) => {
+              console.log("SORTING");
+              if (sort === "duration") return a.duration - b.duration;
+              if (sort === "rating") return a.rating - b.rating;
+              return a.caloriesBurned - b.caloriesBurned;
+            })
+            .map((workout) => (
+              <Card key={workout.id} workout={workout} today={false} />
+            ))}
     </div>
   );
 };
