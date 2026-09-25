@@ -2,6 +2,7 @@
 import Counters from "@/Components/My-plans/Counters";
 import EmptyWorkouts from "@/Components/My-plans/EmptyWorkouts";
 import Title from "@/Components/My-plans/Title";
+import Workouts from "@/Components/My-plans/Workouts";
 import { WorkoutContext } from "@/Providers/WorkoutProvider";
 import React, { useContext, useState } from "react";
 
@@ -60,12 +61,12 @@ const Page = () => {
           saved.length < 1 ? (
             <EmptyWorkouts />
           ) : (
-            ""
+            <Workouts tab={tab} sort={sort} />
           )
         ) : todaysPlans.length < 1 ? (
           <EmptyWorkouts />
         ) : (
-          ""
+          <Workouts tab={tab} sort={sort} />
         )}
       </div>
     </section>
