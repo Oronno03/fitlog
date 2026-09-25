@@ -11,7 +11,7 @@ const workouts = await fetchWorkouts();
 
 const Workouts = () => {
   return (
-    <section className="bg-black pb-16">
+    <section className="bg-black pb-16" id="library">
       <div className="container mx-auto flex flex-col gap-8">
         <div>
           <h1 className="font-oswald text-[30px] font-bold">THE LIBRARY</h1>
