@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/Components/Navbar/Navbar";
+import WorkoutProvider from "@/Providers/WorkoutProvider";
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Fitlog",
@@ -14,8 +16,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />        
-        {children}
+        <WorkoutProvider>
+          <ToastContainer />
+          <Navbar />        
+          {children}
+        </WorkoutProvider>
       </body>
     </html>
   );
