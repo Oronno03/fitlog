@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { WorkoutContext } from "@/Providers/WorkoutProvider";
 import { IWorkout } from "@/type";
 import React, { useContext } from "react";
@@ -11,31 +11,61 @@ const Buttons = ({ workout }: { workout: IWorkout }) => {
     useContext(WorkoutContext);
 
   const handleSave = () => {
-    const exists = saved.find(save => save.id === workout.id);
-    if(exists) {
-        toast.warn("You have already saved this workout!", {position: "top-right", theme: "dark", })
-        return;
+    const exists = saved.find((save) => save.id === workout.id);
+    if (exists) {
+      toast.warn("You have already saved this workout!", {
+        position: "top-right",
+        theme: "dark",
+      });
+      return;
     }
-    toast.success("Added the workout to your saved workouts", {position: "top-right", theme: "dark"})
+    toast.success("Added the workout to your saved workouts", {
+      position: "top-right",
+      theme: "dark",
+    });
     setSaved([...saved, workout]);
   };
 
   const handleAddToday = () => {
-    const exists = todaysPlans.find(plan => plan.id === workout.id);
-    if(exists) {
-        toast.warn("You have already added this workout!", {position: "top-right", theme: "dark", })
-        return;
+    const exists = todaysPlans.find((plan) => plan.id === workout.id);
+    if (exists) {
+      toast.warn("You have already added this workout!", {
+        position: "top-right",
+        theme: "dark",
+      });
+      return;
     }
-    toast.success("Added the workout to your today's plan", {position: "top-right", theme: "dark"})
+
+    if (todaysPlans.length >= 5) {
+      toast.error(
+        "You can not add more than 5 workout. Clear workout from your today's plan to add more.",
+        {
+          theme: "dark",
+          position: "bottom-right",
+        },
+      );
+      return;
+    }
+
+    toast.success("Added the workout to your today's plan", {
+      position: "top-right",
+      theme: "dark",
+    });
     setTodaysPlans([...todaysPlans, workout]);
   };
 
   return (
     <div className="flex gap-4 mt-9">
-      <button onClick={handleAddToday} className="inline-flex gap-2 justify-center items-center px-6 py-3 bg-[#CCFF00] text-black  font-inter font-semibold rounded-xl cursor-pointer">
+      <button
+        onClick={handleAddToday}
+        className={`inline-flex gap-2 justify-center items-center px-6 py-3 bg-[#CCFF00] text-black  font-inter font-semibold rounded-xl ${todaysPlans.length < 5 ? "cursor-pointer" : "cursor-not-allowed"}`}
+      >
         <BiCalendar /> Add to today&apos;s plan
       </button>
-      <button onClick={handleSave} className="inline-flex gap-2 justify-center items-center px-6 py-3 font-inter font-semibold bg-transparent border border-solid border-[#374151] rounded-xl cursor-pointer">
+      <button
+        onClick={handleSave}
+        className="inline-flex gap-2 justify-center items-center px-6 py-3 font-inter font-semibold bg-transparent border border-solid border-[#374151] rounded-xl cursor-pointer"
+      >
         <LuBookMarked /> Save for later
       </button>
     </div>
