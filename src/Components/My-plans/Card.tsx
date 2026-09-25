@@ -77,6 +77,10 @@ const Card = ({ workout, today }: { workout: IWorkout; today: boolean }) => {
             } else {
               setSaved(saved.filter((plan) => plan.id !== workout.id));
             }
+            toast.success("Removed the workout", {
+              position: "bottom-right",
+              theme: "dark",
+            });
           }}
         >
           X
