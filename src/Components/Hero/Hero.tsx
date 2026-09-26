@@ -4,7 +4,7 @@ import React from "react";
 const Hero = () => {
   return (
     <section className="bg-black pt-12 pb-16">
-      <div className="container grid grid-cols-2 mx-auto p-14 bg-[#15171D] rounded-2xl">
+      <div className="container md:grid md:grid-cols-2 mx-auto p-14 bg-[#15171D] rounded-2xl">
         <div className="flex flex-col gap-5">
           <p className="font-bold font-inter text-[#C2F800] text-[11px] tracking-[1.1px]">WORKOUT LIBRARY</p>
           <h1 className="font-oswald font-extrabold text-[60px] tracking-[-1.5px]">TRAIN WITH INTENT. LOG EVERY SET.</h1>
@@ -19,7 +19,7 @@ const Hero = () => {
           src={"/banner.png"}
           height={350}
           width={350}
-          className="justify-self-end"
+          className="justify-self-center md:mt-0 mt-5 md:justify-self-end"
         />
       </div>
     </section>

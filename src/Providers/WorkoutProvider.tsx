@@ -30,11 +30,19 @@ const WorkoutProvider = ({ children }: { children: ReactNode }) => {
     const lsSaved = localStorage.getItem("savedPlans");
 
     if (lsTodaysPlans) {
-      setTodaysPlans(JSON.parse(lsTodaysPlans));
+      try {
+        setTodaysPlans(JSON.parse(lsTodaysPlans));
+      } catch {
+
+      }
     }
 
     if (lsSaved) {
-      setSaved(JSON.parse(lsSaved));
+      try {
+        setSaved(JSON.parse(lsSaved));
+      } catch {
+        
+      }
     }
 
     setDataLoaded(true);

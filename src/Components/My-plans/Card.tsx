@@ -17,58 +17,74 @@ const Card = ({ workout, today }: { workout: IWorkout; today: boolean }) => {
   const [done, setDone] = useState(false);
 
   return (
-    <div className="bg-[#14171E] rounded-2xl p-4 flex justify-between items-center">
-      <div className="flex gap-4 items-center">
+    <div className="flex flex-col gap-4 rounded-2xl bg-[#14171E] p-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center">
         <Image
           alt={workout.name}
           src={workout.image}
           width={200}
-          height={10}
-          className="rounded-xl w-50 h-35 object-cover"
+          height={140}
+          className="h-45 w-full rounded-xl object-cover sm:h-35 sm:w-50"
         />
-        <div className="flex flex-col gap-2">
-          <h1 className="font-oswald font-bold text-[24px]">{workout.name}</h1>
-          <p className="font-inter text-[#8A92A0] text-[16px]">
+
+        <div className="flex min-w-0 flex-col gap-2">
+          <h1 className="font-oswald text-[21px] font-bold sm:text-[24px]">
+            {workout.name}
+          </h1>
+
+          <p className="font-inter text-sm text-[#8A92A0] sm:text-[16px]">
             {workout.equipment}
           </p>
-          <div>
-            <div className="flex gap-4">
-              <p className="inline-flex justify-center items-center gap-1.5 font-bold">
-                <CiClock1 color="#CCFF00" fontSize={25} /> {workout.duration}
-              </p>
-              <p className="inline-flex justify-center items-center gap-1.5 font-bold">
-                <FaFire color="#CCFF00" /> {workout.caloriesBurned}
-              </p>
-              <p className="inline-flex justify-center items-center gap-1.5 font-bold">
-                <CiStar color="#CCFF00" /> {workout.rating}
-              </p>
-            </div>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            <p className="inline-flex items-center gap-1.5 font-bold text-sm sm:text-base">
+              <CiClock1 color="#CCFF00" fontSize={25} />
+              {workout.duration}
+            </p>
+
+            <p className="inline-flex items-center gap-1.5 font-bold text-sm sm:text-base">
+              <FaFire color="#CCFF00" />
+              {workout.caloriesBurned}
+            </p>
+
+            <p className="inline-flex items-center gap-1.5 font-bold text-sm sm:text-base">
+              <CiStar color="#CCFF00" />
+              {workout.rating}
+            </p>
           </div>
         </div>
       </div>
-      <div className="flex gap-2 items-center cursor-pointer">
+
+      <div className="flex flex-wrap items-center gap-2 md:shrink-0">
         <Link
           href={`/workouts/${workout.id}`}
-          className="border border-[#374151] px-4 py-2 rounded-full font-bold"
+          className="rounded-full border border-[#374151] px-4 py-2 text-sm font-bold sm:text-base"
         >
           View Details
         </Link>
+
         {today && (
-          <p
-            className="text-black font-bold bg-[#CCFF00] inline-flex gap-1 items-center px-4 py-2 rounded-full"
+          <button
+            type="button"
+            className="inline-flex items-center gap-1 rounded-full bg-[#CCFF00] px-4 py-2 text-sm font-bold text-black sm:text-base"
             onClick={() => {
               if (done) return;
+
               setDone(true);
+
               toast.success("Marked workout as done!", {
                 position: "bottom-right",
               });
             }}
           >
-            <TiTick /> {!done ? "Mark As Done" : "Marked As Done"}
-          </p>
+            <TiTick />
+            {!done ? "Mark As Done" : "Marked As Done"}
+          </button>
         )}
-        <p
-          className="hover:text-red-600"
+
+        <button
+          type="button"
+          className="px-2 py-2 font-bold text-white transition hover:text-red-600"
           onClick={() => {
             if (today) {
               setTodaysPlans(
@@ -77,6 +93,7 @@ const Card = ({ workout, today }: { workout: IWorkout; today: boolean }) => {
             } else {
               setSaved(saved.filter((plan) => plan.id !== workout.id));
             }
+
             toast.success("Removed the workout", {
               position: "bottom-right",
               theme: "dark",
@@ -84,7 +101,7 @@ const Card = ({ workout, today }: { workout: IWorkout; today: boolean }) => {
           }}
         >
           X
-        </p>
+        </button>
       </div>
     </div>
   );

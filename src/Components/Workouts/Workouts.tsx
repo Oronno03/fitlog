@@ -2,7 +2,7 @@ import { IWorkout } from "@/type";
 import WorkoutCard from "./WorkoutCard";
 
 const fetchWorkouts = async (): Promise<IWorkout[]> => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+  const res = await fetch("https://api.api-store.workers.dev/api/fitlog");
   const data = await res.json();
   return data;
 };
@@ -18,7 +18,7 @@ const Workouts = async () => {
             Twelve lifts covering every major muscle group
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
           {workouts.map((workout) => (
             <WorkoutCard key={workout.id} workout={workout} />
           ))}
