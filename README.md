@@ -2,6 +2,8 @@
 
 Fitlog is a responsive workout management web application where users can explore different workouts, view detailed workout information, save their favorite workouts, and create a personalized plan for today's exercises.
 
+# [Live Link](https://fitlogjournal.netlify.app)
+
 ## Technologies Used
 
 - Next.js

@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
         hostname: 'img.magnific.com',
       },
     ]
-  }
+  },
 };
 
 export default nextConfig;
